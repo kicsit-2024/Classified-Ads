@@ -1,6 +1,7 @@
 ﻿using ClassifiedAds.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ClassifiedAds.Models
 {
@@ -32,6 +33,8 @@ namespace ClassifiedAds.Models
     {
         public string Name { get; set; }
         public int CategoryId { get; set; }
+
+        [JsonIgnore]
         public Category Category { get; set; }
         public List<CategorySpec> Specs { get; set; }
     }
@@ -44,6 +47,8 @@ namespace ClassifiedAds.Models
         public string ShortCode { get; set; }
         public CategorySpecValueType ValueType { get; set; }
         public int GroupId { get; set; }
+
+        [JsonIgnore]
         public CategorySpecGroup Group { get; set; }
     }
 
@@ -56,5 +61,12 @@ namespace ClassifiedAds.Models
         DDList = 2,
         Boolean = 3,
         DateTime = 4
+    }
+
+    public enum RecordUpdateType
+    {
+        Update, 
+        Add,
+        Delete
     }
 }

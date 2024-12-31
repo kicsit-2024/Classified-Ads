@@ -5,7 +5,7 @@
 }
 <div id="category-app" v-cloak>
     <h3>{{3+5}}</h3>
-    <form asp-action="Create">
+    <form asp-action="Create" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -13,7 +13,7 @@
                         <h4 class="card-title">Create Category</h4>
                     </div>
                     <div class="card-body">
-
+                        <input type="hidden" asp-for="Id" />
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="Name" class="control-label"></label>
@@ -27,15 +27,22 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Logo" class="control-label"></label>
-                            <input asp-for="Logo" class="form-control" />
+                            <input asp-for="Logo" data-preview class="form-control" />
                             <span asp-validation-for="Logo" class="text-danger"></span>
+
+                            <div class="Logo_preview">
+                                @if (!string.IsNullOrEmpty(Model?.LogoUrl))
+                                {
+                                    <img src="@Model.LogoUrl" class="w-50 img-thumbnail my-2" />
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="p-3 bg-light mb-3 rounded">
                     <div class="row justify-content-end g-2">
                         <div class="col-lg-4">
-                            <input type="submit" class="btn btn-outline-secondary w-100" value="Create" />
+                            <input type="submit" class="btn btn-outline-secondary w-100" value="@(Model?.Id > 0 ? "Update" : "Create")" />
                         </div>
                     </div>
                 </div>
@@ -60,7 +67,8 @@
                         <template v-for="(g, gIndex) in groups">
                             <div class="row mt-2">
                                 <div class="col-md-11">
-                                    <input class="form-control" v-model="g.name" :name="`Groups[${gIndex}].Name`" />
+                                    <input v-if="g.id" class="form-control" v-model="g.id" :name="`SpecsGroups[${gIndex}].Id`" type="hidden" />
+                                    <input class="form-control" v-model="g.name" :name="`SpecsGroups[${gIndex}].Name`" />
                                 </div>
                                 <div class="col-md-1">
                                     <i class="ri-delete-bin-line fs-24 text-danger" @@click="removeGroup(g)"></i>
@@ -73,11 +81,14 @@
                                 <div class="col-md-3 py-2">Data Type</div>
                                 @* <div class="col-md-1"></div> *@
                             </div>
-                            <div class="row mb-1" v-for="(spec, sIndex) in g.specs">
-                                <input type="hidden" :name="`Groups[${gIndex}].Specs[${sIndex}].Rank`" :id="`Groups_${gIndex}__Specs_${sIndex}__Rank`" v-model="spec.rank" placeholder="Rank" />
-                                <div class="col-md-3"><input class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].ShortCode`" :id="`Groups_${gIndex}__Specs_${sIndex}__ShortCode`" v-model="spec.shortCode" placeholder="Short Code" /></div>
-                                <div class="col-md-5"><input class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].Name`" :id="`Groups_${gIndex}__Specs_${sIndex}__Name`" v-model="spec.name" placeholder="Name" /></div>
-                                <div class="col-md-3"><select class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].ValueType`" :id="`Groups_${gIndex}__Specs_${sIndex}__ValueType`" asp-items="@Html.GetEnumSelectList(typeof(CategorySpecValueType))"></select></div>
+                            <div class="row mb-1" v-for="(spec, sIndex) in g.specs" :class="spec.recordUpdateType == 2 ? 'bg-danger' : ''">
+                                <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].RecordUpdateType`" v-model="spec.recordUpdateType" />
+                                <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Id`" v-model="spec.id" />
+                                <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Token`" v-model="spec.token" />
+                                <input type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Rank`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__Rank`" v-model="spec.rank" placeholder="Rank" />
+                                <div class="col-md-3"><input class="form-control" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].ShortCode`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__ShortCode`" v-model="spec.shortCode" placeholder="Short Code" /></div>
+                                <div class="col-md-5"><input class="form-control" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Name`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__Name`" v-model="spec.name" placeholder="Name" /></div>
+                                <div class="col-md-3"><select class="form-control" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].ValueType`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__ValueType`" asp-items="@Html.GetEnumSelectList(typeof(CategorySpecValueType))"></select></div>
                                 <div class="col-md-1">
                                     <i class="ri-delete-bin-line fs-24 text-danger" @@click="removeSpec(spec, g)"></i>
                                 </div>
@@ -102,7 +113,7 @@
         var categoryApp = Vue.createApp({
             data() {
                 return {
-                    groups: [],
+                    groups: @Html.Raw(Json.Serialize(Model?.SpecsGroups ?? new List<CategorySpecGroup> { })),
                     groupInput: ''
                 }
             },
@@ -117,11 +128,12 @@
                     this.groupInput = '';
                 },
                 addSpec(group) {
-                    group.specs.push({ id: +new Date(), name: '', rank: group.specs.length + 1, shortCode: '', valueType: 'Text' });
+                    group.specs.push({ recordUpdateType: 'Add', token: +new Date(), name: '', rank: group.specs.length + 1, shortCode: '', valueType: 'Text' });
                 },
                 removeSpec(spec, group) {
-                    group.specs = group.specs.filter(m => m.id != spec.id);
-                    if (group.specs.length == 0) {
+                    spec.recordUpdateType = 2;
+                    //group.specs = group.specs.filter(m => m.token != spec.token)
+                    if (group.specs.filter(m => m.recordUpdateType != 2).length == 0) {
                         this.removeGroup(group);
                     }
                 },

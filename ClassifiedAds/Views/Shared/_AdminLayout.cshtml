@@ -1271,7 +1271,7 @@
 
      </div>
      <!-- END Wrapper -->
-
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
      <!-- Vendor Javascript (Require in all Page) -->
      <script src="/themes/larkon/js/vendor.js"></script>
 
@@ -1284,7 +1284,8 @@
      <script src="/themes/larkon/vendor/jsvectormap/maps/world.js"></script>
 
      <!-- Dashboard Js -->
-     <script src="/themes/larkon/js/pages/dashboard.js"></script>
+     @* <script src="/themes/larkon/js/pages/dashboard.js"></script> *@
+    <script src="~/themes/larkon/js/custom.js"></script>
     @RenderSection("js", false)
     @RenderSection("scripts", false)
 </body>

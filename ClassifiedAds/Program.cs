@@ -7,6 +7,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+//builder.WebHost.ConfigureKestrel(serverOptions =>
+//{
+//    serverOptions.ListenAnyIP(8005);  // This binds the server to all network interfaces
+//});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

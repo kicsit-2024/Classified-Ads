@@ -17,8 +17,10 @@ namespace ClassifiedAds.Models
         public RecordStatus RecordStatus { get; set; }
 
         public virtual int? UserId { get; set; }
-        public string Token { get; set; }
+        public string Token { get; set; } = Path.GetRandomFileName().Replace(".", "");
 
+        [NotMapped]
+        public RecordUpdateType RecordUpdateType { get; set; }
         public virtual void MakeSafe(bool isUpdate = false)
         {
             DbEntryTime = DateTime.Now;
