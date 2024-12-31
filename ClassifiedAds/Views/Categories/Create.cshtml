@@ -1,0 +1,134 @@
+﻿@model ClassifiedAds.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div id="category-app" v-cloak>
+    <h3>{{3+5}}</h3>
+    <form asp-action="Create">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Create Category</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Logo" class="control-label"></label>
+                            <input asp-for="Logo" class="form-control" />
+                            <span asp-validation-for="Logo" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 bg-light mb-3 rounded">
+                    <div class="row justify-content-end g-2">
+                        <div class="col-lg-4">
+                            <input type="submit" class="btn btn-outline-secondary w-100" value="Create" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Dynamic Attributes</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" v-model="groupInput" @@keypress.enter.prevent="addGroup" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" class="btn btn-info" value="Add Group" @@click="addGroup" />
+                            </div>
+                        </div>
+
+                        <template v-for="(g, gIndex) in groups">
+                            <div class="row mt-2">
+                                <div class="col-md-11">
+                                    <input class="form-control" v-model="g.name" :name="`Groups[${gIndex}].Name`" />
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="ri-delete-bin-line fs-24 text-danger" @@click="removeGroup(g)"></i>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-1 bg-info text-white">
+                                <div class="col-md-3 py-2">Short Code</div>
+                                <div class="col-md-5 py-2">Spec Name</div>
+                                <div class="col-md-3 py-2">Data Type</div>
+                                @* <div class="col-md-1"></div> *@
+                            </div>
+                            <div class="row mb-1" v-for="(spec, sIndex) in g.specs">
+                                <input type="hidden" :name="`Groups[${gIndex}].Specs[${sIndex}].Rank`" :id="`Groups_${gIndex}__Specs_${sIndex}__Rank`" v-model="spec.rank" placeholder="Rank" />
+                                <div class="col-md-3"><input class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].ShortCode`" :id="`Groups_${gIndex}__Specs_${sIndex}__ShortCode`" v-model="spec.shortCode" placeholder="Short Code" /></div>
+                                <div class="col-md-5"><input class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].Name`" :id="`Groups_${gIndex}__Specs_${sIndex}__Name`" v-model="spec.name" placeholder="Name" /></div>
+                                <div class="col-md-3"><select class="form-control" :name="`Groups[${gIndex}].Specs[${sIndex}].ValueType`" :id="`Groups_${gIndex}__Specs_${sIndex}__ValueType`" asp-items="@Html.GetEnumSelectList(typeof(CategorySpecValueType))"></select></div>
+                                <div class="col-md-1">
+                                    <i class="ri-delete-bin-line fs-24 text-danger" @@click="removeSpec(spec, g)"></i>
+                                </div>
+                            </div>
+
+                            <span class="btn btn-info bg-info mt-2" @@click="addSpec(g)">+ Add Spec</span>
+                        </template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        var categoryApp = Vue.createApp({
+            data() {
+                return {
+                    groups: [],
+                    groupInput: ''
+                }
+            },
+            methods: {
+                addGroup() {
+                    if (this.groupInput) {
+                        var group = { id: +new Date(), name: this.groupInput, specs: [] };
+                        this.addSpec(group);
+                        this.groups.push(group);
+                    }
+
+                    this.groupInput = '';
+                },
+                addSpec(group) {
+                    group.specs.push({ id: +new Date(), name: '', rank: group.specs.length + 1, shortCode: '', valueType: 'Text' });
+                },
+                removeSpec(spec, group) {
+                    group.specs = group.specs.filter(m => m.id != spec.id);
+                    if (group.specs.length == 0) {
+                        this.removeGroup(group);
+                    }
+                },
+                removeGroup(group) {
+                    this.groups = this.groups.filter(m => m.id != group.id);
+                }
+            }
+        }).mount('#category-app');
+    </script>
+}
