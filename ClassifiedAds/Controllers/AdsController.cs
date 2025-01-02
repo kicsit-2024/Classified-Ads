@@ -7,9 +7,9 @@ namespace ClassifiedAds.Controllers
 {
     public class AdsController(AppDbContext db) : Controller
     {
-        public IActionResult Create(int id, string token)
+        public IActionResult Create(int cId, string token)
         {
-            var category = db.Categories.Where(m => m.Id == id && m.Token == token)
+            var category = db.Categories.Where(m => m.Id == cId && m.Token == token)
                 .Include(m => m.SpecsGroups)
                 .ThenInclude(m => m.Specs).FirstOrDefault();
             if (category == null) return NotFound();

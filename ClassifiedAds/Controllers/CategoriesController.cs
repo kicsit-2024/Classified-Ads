@@ -116,7 +116,7 @@ namespace ClassifiedAds.Controllers
                     });
                 });
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             var errors = ModelState.Values.Where(m => m.Errors.Any()).ToList();
             return View(model);

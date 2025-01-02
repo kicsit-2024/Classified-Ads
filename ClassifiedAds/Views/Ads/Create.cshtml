@@ -5,13 +5,15 @@
     Layout = "_WebsiteLayout";
     Category category = ViewBag.Category;
 }
+@* <h1>Sum of 5 and 3 is @(5+3)</h1> *@
 
 <section class="section-padding-equal-70">
     <div class="container">
         <div class="post-ad-box-layout1 light-shadow-bg">
             <div class="post-ad-form light-box-content">
                 <div class="post-alert alert alert-success">You have more 958 free ads.</div>
-                <form action="#">
+                <form asp-action="Create" asp-controller="Ads">
+                    <input type="hidden" asp-for="CategoryId" value="@category.Id" />
                     <div class="post-section post-type">
                         <div class="post-ad-title">
                             <i class="fas fa-tags"></i>
@@ -143,16 +145,16 @@
                                             @switch (input.ValueType)
                                             {
                                                 case CategorySpecValueType.Text:
-                                                    <input asp-for="SpecsValues[inputCounter]" type="text" class="form-control" />
+                                                    <input asp-for="SpecsValues[inputCounter].Value" type="text" class="form-control" />
                                                     break;
                                                 case CategorySpecValueType.Numeric:
-                                                    <input asp-for="SpecsValues[inputCounter]" type="number" class="form-control" />
+                                                    <input asp-for="SpecsValues[inputCounter].Value" type="number" class="form-control" />
                                                     break;
                                                 case CategorySpecValueType.DateTime:
-                                                    <input asp-for="SpecsValues[inputCounter]" type="date" class="form-control" />
+                                                    <input asp-for="SpecsValues[inputCounter].Value" type="date" class="form-control" />
                                                     break;
                                                 case CategorySpecValueType.DDList:
-                                                    <select asp-for="SpecsValues[inputCounter]" class="form-control">
+                                                    <select asp-for="SpecsValues[inputCounter].Value" class="form-control">
                                                         @if (ddlOptions != null)
                                                         {
                                                             foreach (var option in ddlOptions)
@@ -178,7 +180,15 @@
 
                         </div>
                     }
-
+                    <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-danger" value="Submit Ad">
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
