@@ -1,9 +1,36 @@
-﻿@{
+﻿@inject AppDbContext db
+
+@{
     ViewData["Title"] = "Home Page";
     Layout = "_WebsiteLayout";
+    var categories = db.Categories.Select(m => new
+    {
+        Id = m.Id,
+        m.Token,
+        Name = m.Name,
+        Description = m.Description,
+        LogoUrl = m.LogoUrl,
+        AdsCount = m.Ads.Count()
+    }).ToList();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        @foreach (var item in categories)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="category-box-layout1">
+                    <a asp-controller="Ads" asp-action="Create" asp-route-id="@item.Id" asp-route-token="@item.Token">
+                        <div class="item-icon">
+                            <img src="@item.LogoUrl" style="height:60px; border-radius:50%" />
+                        </div>
+                        <div class="item-content">
+                            <h3 class="item-title">@item.Name</h3>
+                            <div class="item-count">@item.AdsCount Ad</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
 </div>

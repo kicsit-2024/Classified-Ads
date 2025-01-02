@@ -27,6 +27,9 @@ namespace ClassifiedAds.Models
             Ads = new List<Ad>();
             base.MakeSafe(isUpdate);
         }
+
+        [NotMapped]
+        public int AdCount { get; set; }
     }
 
     public class CategorySpecGroup : SharedModel

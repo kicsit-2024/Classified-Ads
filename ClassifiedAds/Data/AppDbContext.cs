@@ -99,6 +99,7 @@ namespace ClassifiedAds.Data
 
             base.OnModelCreating(modelBuilder);
         }
+        public DbSet<ClassifiedAds.Models.LovOption> LovOption { get; set; }
 
 
     }

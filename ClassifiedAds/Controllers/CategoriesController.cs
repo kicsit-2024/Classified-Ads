@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ClassifiedAds.Data;
-using ClassifiedAds.Models;
+﻿using ClassifiedAds.Data;
 using ClassifiedAds.Helpers;
+using ClassifiedAds.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassifiedAds.Controllers
 {
@@ -79,7 +74,25 @@ namespace ClassifiedAds.Controllers
                 }
                 if (model.Id > 0)
                 {
+                    var modifieds = _context.ChangeTracker.Entries().Where(m => m.State == EntityState.Modified).ToList();
                     _context.Update(model);
+                    modifieds = _context.ChangeTracker.Entries().Where(m => m.State == EntityState.Modified).ToList();
+                    //var specIds = model.SpecsGroups.SelectMany(m => m.Specs.Select(s => s.Id)).ToList();
+                    //var existingSpecs = _context.Categories.Where(m => m.Id == model.Id).SelectMany(m => m.SpecsGroups).SelectMany(m => m.Specs);
+                    var existingCategory = _context.Categories.AsNoTracking().Where(m => m.Id == model.Id).Include(m => m.SpecsGroups).ThenInclude(m => m.Specs).FirstOrDefault();
+                    
+                    var userDataSpecIds = model.SpecsGroups.SelectMany(m => m.Specs.Select(n => n.Id)).ToList();
+                    foreach (var group in existingCategory.SpecsGroups)
+                    {
+                        foreach (var s in group.Specs)
+                        {
+                            if (!userDataSpecIds.Contains(s.Id))
+                            {
+                                //_context.Remove(s);
+                                _context.Entry(s).State = EntityState.Deleted;
+                            }
+                        }
+                    }
                     if (string.IsNullOrEmpty(model.LogoUrl))
                     {
                         _context.Entry(model).Property(m => m.LogoUrl).IsModified = false;
@@ -91,9 +104,11 @@ namespace ClassifiedAds.Controllers
                 }
 
                 model.SpecsGroups.Where(m => m.Token?.Length > 11).ToList().ForEach(m => m.Token = CoreHelper.GetUniqueToken());
-                model.SpecsGroups.ToList().ForEach(g => {
-                    g.Specs.ToList().ForEach(s => {
-                        if(s.RecordUpdateType ==  RecordUpdateType.Delete)
+                model.SpecsGroups.ToList().ForEach(g =>
+                {
+                    g.Specs.ToList().ForEach(s =>
+                    {
+                        if (s.RecordUpdateType == RecordUpdateType.Delete)
                         {
                             _context.Entry(s).State = EntityState.Deleted;
                         }

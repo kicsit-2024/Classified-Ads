@@ -82,9 +82,9 @@
                                 @* <div class="col-md-1"></div> *@
                             </div>
                             <div class="row mb-1" v-for="(spec, sIndex) in g.specs" :class="spec.recordUpdateType == 2 ? 'bg-danger' : ''">
-                                @* <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].RecordUpdateType`" v-model="spec.recordUpdateType" /> *@
+                                <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].RecordUpdateType`" v-model="spec.recordUpdateType" />
                                 <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Id`" v-model="spec.id" />
-                                @* <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Token`" v-model="spec.token" /> *@
+                                <input v-if="spec.id" type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Token`" v-model="spec.token" />
                                 <input type="hidden" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Rank`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__Rank`" v-model="spec.rank" placeholder="Rank" />
                                 <div class="col-md-3"><input class="form-control" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].ShortCode`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__ShortCode`" v-model="spec.shortCode" placeholder="Short Code" /></div>
                                 <div class="col-md-5"><input class="form-control" :name="`SpecsGroups[${gIndex}].Specs[${sIndex}].Name`" :id="`SpecsGroups_${gIndex}__Specs_${sIndex}__Name`" v-model="spec.name" placeholder="Name" /></div>
@@ -131,8 +131,8 @@
                     group.specs.push({ recordUpdateType: 'Add', token: +new Date(), name: '', rank: group.specs.length + 1, shortCode: '', valueType: 'Text' });
                 },
                 removeSpec(spec, group) {
-                    //spec.recordUpdateType = 2;
-                    group.specs = group.specs.filter(m => m.token != spec.token)
+                    spec.recordUpdateType = 2;
+                    //group.specs = group.specs.filter(m => m.token != spec.token)
                     if (group.specs.filter(m => m.recordUpdateType != 2).length == 0) {
                         this.removeGroup(group);
                     }

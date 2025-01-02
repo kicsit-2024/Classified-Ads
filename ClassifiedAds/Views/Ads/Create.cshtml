@@ -1,0 +1,186 @@
+﻿@model Ad
+@inject AppDbContext db
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_WebsiteLayout";
+    Category category = ViewBag.Category;
+}
+
+<section class="section-padding-equal-70">
+    <div class="container">
+        <div class="post-ad-box-layout1 light-shadow-bg">
+            <div class="post-ad-form light-box-content">
+                <div class="post-alert alert alert-success">You have more 958 free ads.</div>
+                <form action="#">
+                    <div class="post-section post-type">
+                        <div class="post-ad-title">
+                            <i class="fas fa-tags"></i>
+                            <h3 class="item-title">Select Type</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label">
+                                    Ad Nature
+                                    <span>*</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <select class="form-control select-box" asp-items="Html.GetEnumSelectList<AdNature>()">
+                                        <option value="">--Select Nature--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-section post-information">
+                        <div class="post-ad-title">
+                            <i class="fas fa-folder-open"></i>
+                            <h3 class="item-title">Product Information</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label" asp-for="Title">
+                                    Title
+                                    <span>*</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="Title">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label" asp-for="Description">
+                                    Description
+                                    <span>*</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" asp-for="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label" asp-for="GoogleMap">
+                                    Google Map Location
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" asp-for="GoogleMap"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label">
+                                    Price
+                                    <span>*</span>
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <input class="form-control" asp-for="Price">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-section post-features">
+                        <div class="post-ad-title">
+                            <i class="fas fa-list-ul"></i>
+                            <h3 class="item-title">Features</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="control-label">
+                                    Features List
+                                </label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <textarea name="description" class="form-control textarea" id="description2" cols="30" rows="5"></textarea>
+                                    <div class="help-text">
+                                        <span>Write a feature in each line eg.</span>
+                                        <span>Feature 1</span>
+                                        <span>Feature 2</span>
+                                        <span>....</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        int inputCounter = 0;
+                    }
+                    @foreach (var item in category.SpecsGroups)
+                    {
+                        <div class="post-section post-contact">
+                            <div class="post-ad-title">
+                                <h3 class="item-title">@item.Name</h3>
+                            </div>
+
+                            @foreach (var input in item.Specs)
+                            {
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label class="control-label">
+                                            @input.Name
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            @{
+                                                var ddlOptions = input.ValueType == CategorySpecValueType.DDList ? db.Lovs.Where(m => m.ShortCode == input.ShortCode).Select(m => m.Options).FirstOrDefault() : null;
+                                            }
+                                            @switch (input.ValueType)
+                                            {
+                                                case CategorySpecValueType.Text:
+                                                    <input asp-for="SpecsValues[inputCounter]" type="text" class="form-control" />
+                                                    break;
+                                                case CategorySpecValueType.Numeric:
+                                                    <input asp-for="SpecsValues[inputCounter]" type="number" class="form-control" />
+                                                    break;
+                                                case CategorySpecValueType.DateTime:
+                                                    <input asp-for="SpecsValues[inputCounter]" type="date" class="form-control" />
+                                                    break;
+                                                case CategorySpecValueType.DDList:
+                                                    <select asp-for="SpecsValues[inputCounter]" class="form-control">
+                                                        @if (ddlOptions != null)
+                                                        {
+                                                            foreach (var option in ddlOptions)
+                                                            {
+                                                                <option value="@option.Value">@option.Text</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option>-</option>
+                                                        }
+                                                    </select>
+                                                    break;
+                                            }
+                                            @{
+                                                <input type="hidden" asp-for="SpecsValues[inputCounter].SpecId" value="@input.Id" />
+                                                inputCounter++;
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    }
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -4,14 +4,13 @@
     <!-- Meta Data -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Classima | Home One</title>
+    <title>Classima | Product Details 1</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/themes/classima/media/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/themes/classima/dependencies/bootstrap/css/bootstrap.min.css">
-    
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="/themes/classima/dependencies/fontawesome/css/all.min.css">
     <!-- Flaticon CSS -->
@@ -33,11 +32,11 @@
     <!-- Google Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
+    @RenderSection("css", false)
 
 </head>
 
 <body class="sticky-header">
-    @RenderBody()
     <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
@@ -56,15 +55,12 @@
         <!--=====================================-->
         <header class="header">
             <div id="rt-sticky-placeholder"></div>
-            <div id="header-menu" class="header-menu menu-layout1 pd-x-20">
-                <div class="container-fluid">
+            <div id="header-menu" class="header-menu menu-layout2">
+                <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-2">
                             <div class="logo-area">
                                 <a href="index.html" class="temp-logo">
-                                    <img src="/themes/classima/media/main-logo.png" alt="logo" class="img-fluid">
-                                </a>
-                                <a href="index.html" class="sticky-logo">
                                     <img src="/themes/classima/media/logo-dark.png" alt="logo" class="img-fluid">
                                 </a>
                             </div>
@@ -217,7 +213,7 @@
                             <div class="header-action-layout1">
                                 <ul>
                                     <li class="header-login-icon">
-                                        <a href="account.html" class="color-light" data-toggle="tooltip" data-placement="top" title="Login/Register">
+                                        <a href="account.html" class="color-primary" data-toggle="tooltip" data-placement="top" title="Login/Register">
                                             <i class="far fa-user"></i>
                                         </a>
                                     </li>
@@ -232,597 +228,39 @@
             </div>
         </header>
         <!--=====================================-->
-        <!--=            Banner Start           =-->
+        <!--=        Inner Banner Start         =-->
         <!--=====================================-->
-        <section class="main-banner-wrap-layout1 bg-dark-overlay bg-common minus-mgt-90" data-bg-image="/themes/classima/media/banner/banner1.jpg">
+        <section class="inner-page-banner" data-bg-image="/themes/classima/media/banner/banner1.jpg">
             <div class="container">
-                <div class="main-banner-box-layout1 animated-headline">
-                    <h1 class="ah-headline item-title">
-                        <span class="ah-words-wrapper">
-                            <b class="is-visible">Buy, Sell, Rent &amp; Exchange in one click</b>
-                            <b>Buy, Sell, Rent &amp; Exchange in one click</b>
-                        </span>
-                    </h1>
-                    <div class="item-subtitle">Search from over 2000+ Active Ads in 29+ Categories for Free</div>
-                    <div class="search-box-layout1">
-                        <form action="#">
-                            <div class="row no-gutters">
-                                <div class="col-lg-3 form-group">
-                                    <div class="input-search-btn search-location">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <label>Select Location</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 form-group">
-                                    <div class="input-search-btn search-category">
-                                        <i class="fas fa-tags"></i>
-                                        <label>Select Category</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 form-group">
-                                    <div class="input-search-btn search-keyword">
-                                        <i class="fas fa-text-width"></i>
-                                        <input type="text" class="form-control" placeholder="Enter Keyword here ..." name="keyword">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 form-group">
-                                    <button type="submit" class="submit-btn"><i class="fas fa-search"></i>Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=====================================-->
-        <!--=            Category Start           =-->
-        <!--=====================================-->
-        <section class="section-padding-top-heading">
-            <div class="container">
-                <div class="heading-layout1">
-                    <h2 class="heading-title">Popular Categories</h2>
-                </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="far fa-building"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Property</h3>
-                                    <div class="item-count">1 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="fas fa-male"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Home Appliances</h3>
-                                    <div class="item-count">3 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="fas fa-glass-martini"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Electronics</h3>
-                                    <div class="item-count">6 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="fas fa-archive"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Business & Industry</h3>
-                                    <div class="item-count">0 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Education</h3>
-                                    <div class="item-count">0 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="far fa-futbol"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Hobby, Sport & Kids</h3>
-                                    <div class="item-count">4 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Health & Beauty</h3>
-                                    <div class="item-count">1 Ad</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="category-box-layout1">
-                            <a href="#">
-                                <div class="item-icon">
-                                    <i class="far fa-file-archive"></i>
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Others</h3>
-                                    <div class="item-count">1 Ad</div>
-                                </div>
-                            </a>
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>@(ViewBag.Title ?? "Classified Ads")</h1>
+                            @* <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Classified Listings</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Electronics</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Computers & Tablets</a>
+                                </li>
+                                <li>Ultrabook 2018 core i7 with 16 GB RAM</li>
+                            </ul> *@
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!--=====================================-->
-        <!--=       Product Box Start           =-->
+        <!--=          Product Start         =-->
         <!--=====================================-->
-        <section class="section-padding-top-heading bg-accent">
-            <div class="container">
-                <div class="heading-layout1">
-                    <h2 class="heading-title">Featured Ads</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product1.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">HD 27 inch Mac 1 year used only</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>3 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Port Chester, New York</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    2,500
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product2.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">New Banded Smart Watch from China</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>3 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Kansas, Emporia</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    47
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html" class="item-trending"><img src="/themes/classima/media/product/product3.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">High quality brand new headphone</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>3 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>New York, Mineola</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    15
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product4.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">Running shoes imported from china</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>3 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>California, Bakersfield</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    36
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product5.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">Team Jersey available in reasonable price</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>4 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>New Jersey, Bloomfield</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    90
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product6.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">Export quality bag pack wholesale min 100 pcs</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>4 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Louisiana, Bogalusa</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    180
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product7.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">Ultrabook 2018 core i7 with 16 GB RAM</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>4 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Kansas, Abilene</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    1,300
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product-box-layout1">
-                            <div class="item-img">
-                                <a href="single-product1.html"><img src="/themes/classima/media/product/product8.jpg" alt="Product"></a>
-                            </div>
-                            <div class="item-content">
-                                <h3 class="item-title"><a href="single-product1.html">Toy Bundle Export Quality form China wholesale</a></h3>
-                                <ul class="entry-meta">
-                                    <li><i class="far fa-clock"></i>4 months ago</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>New York, Brooklyn</li>
-                                </ul>
-                                <div class="item-price">
-                                    <span class="currency-symbol">$</span>
-                                    230
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=====================================-->
-        <!--=       Location Start           	=-->
-        <!--=====================================-->
-        <section class="section-padding-top-heading">
-            <div class="container">
-                <div class="heading-layout1">
-                    <h2 class="heading-title">Our Top Locations</h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="location-box-layout1">
-                            <a href="#">
-                                <div class="item-img">
-                                    <img src="/themes/classima/media/location/location1.jpg" alt="Brooklyn">
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">New Jersey</h3>
-                                    <div class="item-count">3 Ads</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="location-box-layout1">
-                            <a href="#">
-                                <div class="item-img">
-                                    <img src="/themes/classima/media/location/location3.jpg" alt="Brooklyn">
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Brooklyn</h3>
-                                    <div class="item-count">1 Ads</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="location-box-layout1">
-                            <a href="#">
-                                <div class="item-img">
-                                    <img src="/themes/classima/media/location/location2.jpg" alt="Brooklyn">
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Bloomfield</h3>
-                                    <div class="item-count">1 Ads</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="location-box-layout1">
-                            <a href="#">
-                                <div class="item-img">
-                                    <img src="/themes/classima/media/location/location4.jpg" alt="Brooklyn">
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Kansas</h3>
-                                    <div class="item-count">3 Ads</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="location-box-layout1">
-                            <a href="#">
-                                <div class="item-img">
-                                    <img src="/themes/classima/media/location/location5.jpg" alt="Brooklyn">
-                                </div>
-                                <div class="item-content">
-                                    <h3 class="item-title">Englewood</h3>
-                                    <div class="item-count">1 Ads</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=====================================-->
-        <!--=       Counter Start           	=-->
-        <!--=====================================-->
-        <section class="counter-wrap-layout1 bg-attachment-fixed" data-bg-image="/themes/classima/media/figure/counter-bg.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 d-flex justify-content-center">
-                        <div class="counter-box-layout1">
-                            <div class="item-icon">
-                                <i class="flaticon-gift"></i>
-                            </div>
-                            <div class="item-content">
-                                <div class="counter-number">
-                                    <span class="counter">5000</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="item-title">Published Ads</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-flex justify-content-center">
-                        <div class="counter-box-layout1">
-                            <div class="item-icon">
-                                <i class="flaticon-users"></i>
-                            </div>
-                            <div class="item-content">
-                                <div class="counter-number">
-                                    <span class="counter">3265</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="item-title">Registered Users</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-flex justify-content-center">
-                        <div class="counter-box-layout1">
-                            <div class="item-icon">
-                                <i class="flaticon-shield"></i>
-                            </div>
-                            <div class="item-content">
-                                <div class="counter-number">
-                                    <span class="counter">2000</span>
-                                    <span>+</span>
-                                </div>
-                                <div class="item-title">Verified Users</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=====================================-->
-        <!--=       Pricing Start           	=-->
-        <!--=====================================-->
-        <section class="section-padding-top-heading">
-            <div class="container">
-                <div class="heading-layout1">
-                    <h2 class="heading-title">Our Pricing and Packages</h2>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-md-6">
-                        <div class="pricing-box-layout1">
-                            <h3 class="item-title">Free</h3>
-                            <div class="price-box">
-                                <span class="item-currency">$0</span>
-                                <span class="item-duration">/ Per month</span>
-                            </div>
-                            <div class="item-features">
-                                <ul>
-                                    <li>3 Regular Ads</li>
-                                    <li>No Featured Ads</li>
-                                    <li>No Top Ads</li>
-                                    <li>No Ads will be bumped up</li>
-                                    <li>Limited Support</li>
-                                </ul>
-                            </div>
-                            <div class="item-btn">
-                                <a href="#" class="btn-fill-xl color-light bgPrimary">Register Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="pricing-box-layout1">
-                            <h3 class="item-title">Basic</h3>
-                            <div class="price-box">
-                                <span class="item-currency">$19</span>
-                                <span class="item-duration">/ Per month</span>
-                            </div>
-                            <div class="item-features">
-                                <ul>
-                                    <li>3 Regular Ads</li>
-                                    <li>1 Featured Ads</li>
-                                    <li>1 Top Ads</li>
-                                    <li>1 Ads will be bumped up</li>
-                                    <li>Basic Support</li>
-                                </ul>
-                            </div>
-                            <div class="item-btn">
-                                <a href="#" class="btn-fill-xl color-light bgPrimary">Register Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="pricing-box-layout1">
-                            <h3 class="item-title">Gold</h3>
-                            <div class="price-box">
-                                <span class="item-currency">$39</span>
-                                <span class="item-duration">/ Per month</span>
-                            </div>
-                            <div class="item-features">
-                                <ul>
-                                    <li>5 Regular Ads</li>
-                                    <li>2 Featured Ads</li>
-                                    <li>3 Top Ads</li>
-                                    <li>3 Ads will be bumped up</li>
-                                    <li>Basic Support</li>
-                                </ul>
-                            </div>
-                            <div class="item-btn">
-                                <a href="#" class="btn-fill-xl color-light bgPrimary">Register Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="pricing-box-layout1">
-                            <h3 class="item-title">Business</h3>
-                            <div class="price-box">
-                                <span class="item-currency">$59</span>
-                                <span class="item-duration">/ Per month</span>
-                            </div>
-                            <div class="item-features">
-                                <ul>
-                                    <li>Unlimited Regular Ads</li>
-                                    <li>5 Featured Ads</li>
-                                    <li>10 Top Ads</li>
-                                    <li>15 Ads will be bumped up</li>
-                                    <li>Priority Support</li>
-                                </ul>
-                            </div>
-                            <div class="item-btn">
-                                <a href="#" class="btn-fill-xl color-light bgPrimary">Register Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=====================================-->
-        <!--=       Blog Start           	=-->
-        <!--=====================================-->
-        <section class="section-padding-top-heading bg-accent">
-            <div class="container">
-                <div class="heading-layout1">
-                    <h2 class="heading-title">Latest Blog Posts</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="blog-box-layout1">
-                            <div class="item-img">
-                                <a href="single-blog.html"><img src="/themes/classima/media/blog/blog1.jpg" alt="blog"></a>
-                            </div>
-                            <div class="item-content">
-                                <ul class="post-meta">
-                                    <li>July 10, 2019</li>
-                                    <li>/ <a href="#">RadiusTheme</a></li>
-                                </ul>
-                                <h3 class="post-title"><a href="single-blog.html">Three Powerful Tricks for Online Advertising</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-box-layout1">
-                            <div class="item-img">
-                                <a href="single-blog.html"><img src="/themes/classima/media/blog/blog2.jpg" alt="blog"></a>
-                            </div>
-                            <div class="item-content">
-                                <ul class="post-meta">
-                                    <li>July 9, 2019</li>
-                                    <li>/ <a href="#">RadiusTheme</a></li>
-                                </ul>
-                                <h3 class="post-title"><a href="single-blog.html">Competitive Analysis for Entrepreneurs 2018</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="blog-box-layout1">
-                            <div class="item-img">
-                                <a href="single-blog.html"><img src="/themes/classima/media/blog/blog3.jpg" alt="blog"></a>
-                            </div>
-                            <div class="item-content">
-                                <ul class="post-meta">
-                                    <li>July 8, 2019</li>
-                                    <li>/ <a href="#">RadiusTheme</a></li>
-                                </ul>
-                                <h3 class="post-title"><a href="single-blog.html">How To Explode Your Leads With Local Search</a></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="single-product-wrap-layout1 section-padding-equal-70 bg-accent">
+            @RenderBody()
         </section>
         <!--=====================================-->
         <!--=       Footer Start           	=-->
@@ -920,6 +358,45 @@
                 </div>
             </div>
         </footer>
+        <!--=====================================-->
+        <!--=       Modal Start           	 	=-->
+        <!--=====================================-->
+        <!-- Author Mail Box -->
+        <div class="modal fade author-mail-box" id="author-mail" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" placeholder="Name *" class="form-control" name="name" data-error="Name field is required" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email *" class="form-control" name="email" data-error="email field is required" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Subject *" class="form-control" name="subject" data-error="Subject field is required" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Message *" class="textarea form-control" name="message" id="form-message" rows="4" cols="20" data-error="Message field is required" required></textarea>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="submit-btn">SUBMIT</button>
+                            </div>
+                            <div class="form-response"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- Jquery Js -->
@@ -952,9 +429,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
     <!-- Site Scripts -->
     <script src="/themes/classima/assets/js/app.js"></script>
-
+    @RenderSection("Scripts", false)
+    @RenderSection("js", false)
 </body>
-
-
-<!-- Mirrored from www.radiustheme.com/demo/html/classima/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Dec 2024 13:15:48 GMT -->
 </html>
